@@ -1,0 +1,6 @@
+Page,Content
+https://172.17.53.253/obj/service/view,k-grid-content
+https://172.17.53.253/obj/service_domain_elements/view,k-grid-content
+https://172.17.53.253/discretedata/operational/event/infrastructure/logical,n-configurator-section-template
+https://juliemr.github.io/protractor-demo/,btn
+https://www.overleaf.com/,btn-primary btn btn-lg btn-hero
