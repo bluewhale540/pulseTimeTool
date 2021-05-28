@@ -15,6 +15,6 @@ describe('pulse tests', function() {
         let processed = await csvIO.readCSV('timeToolData1.csv');
         await csvIO.getTimes(processed);
         csvIO.writeCSV(processed, 'timeToolData1.csv');
-        //console.log(processed);
+        console.log(processed);
     }, 2147483647);
 });

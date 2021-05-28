@@ -37,6 +37,10 @@ async function readCSV(file) {
  * 
  * @param {Array} jsons An array of JSONs representing the csv file, where each JSON/row
  * corresponds to a page to test.
+ * 
+ * @todo Prefix the date with user specified Pulse/Ravens/etc.
+ * @todo Insert the most recent date and finish time after Content and before older dates.
+ * Look into sort-package-json or convert json to array and back.
  */
 async function getTimes(jsons) {
     const now = new Date(Date.now());

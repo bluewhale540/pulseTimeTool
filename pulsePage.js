@@ -5,6 +5,8 @@ let pulsePage = function() {
 
     /**
      * Handles the login of a Pulse instance. The login page should already be loaded.
+     * 
+     * @todo Add the ability to specify username and password from command line.
      */
     this.login = function() {
         let username = browser.driver.findElement(by.name('Core.Login.user_name'));
