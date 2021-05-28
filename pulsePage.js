@@ -5,15 +5,14 @@ let pulsePage = function() {
 
     /**
      * Handles the login of a Pulse instance. The login page should already be loaded.
-     * 
-     * @todo Add the ability to specify username and password from command line.
+     * The username and password can be passed as a command line argument.
      */
     this.login = function() {
         let username = browser.driver.findElement(by.name('Core.Login.user_name'));
         let password = browser.driver.findElement(by.name('Core.Login.password'));
         let loginButton = browser.driver.findElement(by.id('form-login-button'));
-        username.sendKeys('admin');
-        password.sendKeys('admin');
+        username.sendKeys(browser.params.user);
+        password.sendKeys(browser.params.password);
         loginButton.click();
         console.log("logged in")
     };
@@ -27,6 +26,8 @@ let pulsePage = function() {
      * the page is usable.
      * @return DOMConLoaded The amount of time taken to load DOM content.
      * @return loadTime The amount of time taken to load all blocking javascript.
+     * 
+     * @todo Add support for element locators besides className.
      */
     this.checkTime = async function (maxTime, async) {
         browser.waitForAngular();
@@ -51,10 +52,10 @@ let pulsePage = function() {
           // jumping to the else clause
           if (await kGrid.isPresent()) {
             gridExist = Date.now();
-            console.log(`The Kendo Grid populated at this time: ${gridExist}`);
+            console.log(`The content populated at this time: ${gridExist}`);
           } 
           else {
-            console.log("The Kendo Grid never showed up...");
+            console.log("The content never showed up...");
           }
         }
         await checkEle();

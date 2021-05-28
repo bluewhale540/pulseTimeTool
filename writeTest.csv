@@ -1,7 +1,7 @@
-Page,Content,2021-05-26T21:56:54.644Z,2021-05-26T21:59:15.906Z,2021-05-26T22:04:43.461Z
-https://172.17.53.253/obj/service/view,k-grid-content,4.951,4.93,4.762
-https://172.17.53.253/obj/service_domain_elements/view,k-grid-content,4.589,4.368,4.295
-https://172.17.53.253/discretedata/operational/event/infrastructure/logical,n-configurator-section-template,4.466,4.667,4.352
-https://juliemr.github.io/protractor-demo/,btn,0.431,0.415,0.592
-https://www.overleaf.com/,btn-primary btn btn-lg btn-hero,1.064,1.075,1.082
-https://172.17.53.253/config/package/upload,n-grid k-grid k-widget,null,null,5.148
+Page,Content,2021-05-28T19:29:59.603Z,2021-05-28T19:31:38.303Z,2021-05-28T19:36:30.911Z
+/obj/service/view,k-grid-content,5.794,5.088,5.096
+/obj/service_domain_elements/view,k-grid-content,null,5.187,4.84
+/discretedata/operational/event/infrastructure/logical,n-configurator-section-template,4.923,5.517,5.678
+https://juliemr.github.io/protractor-demo/,btn,0.461,0.525,0.517
+https://www.overleaf.com/,btn-primary btn btn-lg btn-hero,1.163,1.017,1.105
+/config/package/upload,n-grid k-grid k-widget,5.295,5.806,4.899

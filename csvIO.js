@@ -3,11 +3,6 @@ const csv = require('csv-parser');
 let converter = require('json-2-csv');
 let pulsePage = require('./pulsePage');
 
-async function mapCSV(file) {
-    let map = await readCSV(file);
-    console.log(map);
-}
-
 /**
  * Reads a csv file that contains rows corresponding to pages to test. The CSV
  * should have columns for the page URL and the content to wait for, titled 'Page' 
@@ -47,7 +42,13 @@ async function getTimes(jsons) {
     const today = now.toISOString();
 
     for await (let json of jsons) {
-        pulsePage.loadPulse(json.Page);
+        if (json.Page[0] == '/') {
+            let fullPage = 'https://' + browser.params.ip + json.Page;
+            pulsePage.loadPulse(fullPage);
+        }
+        else {
+            pulsePage.loadPulse(json.Page);
+        }
         let finish = await pulsePage.checkTime(30000, json.Content);
         json[today] = finish;
     }
