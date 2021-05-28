@@ -19,7 +19,7 @@ let pulsePage = function() {
 
     /**
      * Calcualtes various metrics related to the time needed to load a page from the 
-     * Pulse interface.
+     * Pulse interface. Thanks to Patrick Hanley for the finish time code.
      * 
      * @param {numeric} maxTime 
      * @return finishTime The amount of time taken to load the specific async javascript so 
