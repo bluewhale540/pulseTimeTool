@@ -2,6 +2,7 @@ const fs = require('fs');
 const csv = require('csv-parser');
 let converter = require('json-2-csv');
 let pulsePage = require('./pulsePage');
+const { hasUncaughtExceptionCaptureCallback } = require('process');
 
 /**
  * Reads a csv file that contains rows corresponding to pages to test. The CSV
@@ -37,19 +38,23 @@ async function readCSV(file) {
  * @todo Insert the most recent date and finish time after Content and before older dates.
  * Look into sort-package-json or convert json to array and back.
  */
-async function getTimes(jsons) {
+async function getTimes(jsons, maxTime) {
     const now = new Date(Date.now());
     const today = now.toISOString();
 
     for await (let json of jsons) {
+        // if the page entry starts with a slash, it needs the IP added on first
         if (json.Page[0] == '/') {
             let fullPage = 'https://' + browser.params.ip + json.Page;
+            console.log('\x1b[33m%s\x1b[0m', fullPage); // just prints the page yellow
             pulsePage.loadPulse(fullPage);
         }
         else {
+            console.log('\x1b[33m%s\x1b[0m', json.Page);
             pulsePage.loadPulse(json.Page);
         }
-        let finish = await pulsePage.checkTime(30000, json.Content);
+        let finish = await pulsePage.checkTime(json.Content);
+        expect(finish).toBeLessThan(maxTime);
         json[today] = finish;
     }
 }

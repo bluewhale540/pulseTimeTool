@@ -1,3 +1,5 @@
+const { hasUncaughtExceptionCaptureCallback } = require("process");
+
 let pulsePage = function() {
     this.loadPulse = function(url) {
         browser.get(url);
@@ -21,7 +23,7 @@ let pulsePage = function() {
      * Calcualtes various metrics related to the time needed to load a page from the 
      * Pulse interface. Thanks to Patrick Hanley for the finish time code.
      * 
-     * @param {numeric} maxTime 
+     * @param {String} async The type of the element locator (class, name, etc).
      * @return finishTime The amount of time taken to load the specific async javascript so 
      * the page is usable.
      * @return DOMConLoaded The amount of time taken to load DOM content.
@@ -29,7 +31,7 @@ let pulsePage = function() {
      * 
      * @todo Add support for element locators besides className.
      */
-    this.checkTime = async function (maxTime, async) {
+    this.checkTime = async function (async) {
         browser.waitForAngular();
         async function pageNav() {
           try {
@@ -65,7 +67,7 @@ let pulsePage = function() {
         const DOMConLoaded = (pagePerf.domComplete - pagePerf.domLoading) / 1000;
         console.log(`The finish time with AJAX/fetch requests was: ${finishTime.toFixed(2)} seconds`);
         console.log(`Load time is: ${loadTime.toFixed(2)} seconds`);
-        console.log(`DOM Content Load Time is: ${DOMConLoaded.toFixed(2)} seconds`);
+        console.log(`DOM Content Load Time is: ${DOMConLoaded.toFixed(2)} seconds\n`);
         return finishTime;
     };
 };
