@@ -1,0 +1,5 @@
+Page,Locator,Content,2021-06-02T20:01:28.784Z,2021-06-02T20:20:20.143Z,2021-06-02T20:21:27.917Z
+/obj/service_domain_elements/view,class,k-grid-content,6.604,6.282,7.594
+/config/inetprofile/add,id,inetprofile-obj-name-container,7.201,5.335,6.485
+/stats/reports/network-data-snapshot,class,n-configurator-container n-configurator-absolute,6.418,7.008,6.399
+/sla/network/index,id,content,null,5.144,5.497
