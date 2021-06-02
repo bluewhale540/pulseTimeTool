@@ -2,7 +2,7 @@ const fs = require('fs');
 const csv = require('csv-parser');
 let converter = require('json-2-csv');
 let pulsePage = require('./pulsePage');
-const { hasUncaughtExceptionCaptureCallback } = require('process');
+const sortPackageJson = require('sort-package-json');
 
 /**
  * Reads a csv file that contains rows corresponding to pages to test. The CSV
@@ -33,6 +33,7 @@ async function readCSV(file) {
  * 
  * @param {Array} jsons An array of JSONs representing the csv file, where each JSON/row
  * corresponds to a page to test.
+ * @param {int} maxTime The maximum amount of time the element can take to load before failing the spec.
  * 
  * @todo Prefix the date with user specified Pulse/Ravens/etc.
  * @todo Insert the most recent date and finish time after Content and before older dates.
@@ -53,7 +54,7 @@ async function getTimes(jsons, maxTime) {
             console.log('\x1b[33m%s\x1b[0m', json.Page);
             pulsePage.loadPulse(json.Page);
         }
-        let finish = await pulsePage.checkTime(json.Content);
+        let finish = await pulsePage.checkTime(json.Content, json.Locator);
         expect(finish).toBeLessThan(maxTime);
         json[today] = finish;
     }
