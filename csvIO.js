@@ -6,8 +6,8 @@ const sortPackageJson = require('sort-package-json');
 
 /**
  * Reads a csv file that contains rows corresponding to pages to test. The CSV
- * should have columns for the page URL and the content to wait for, titled 'Page' 
- * and 'Content', respectively.
+ * should have columns for the page URL, the element locator to use, and the 
+ * content to wait for, titled 'Page', 'Locator', and 'Content', respectively.
  * 
  * @param {String} file The name of the file to be read.
  * @returns a Promise that resolves to an array of JSONs representing the csv 
@@ -42,8 +42,11 @@ async function readCSV(file) {
 async function getTimes(jsons, maxTime) {
     const now = new Date(Date.now());
     const today = now.toISOString();
+    let sortKeys = Object.keys(jsons[0]);
+    sortKeys.splice(3, 0, today);
+    console.log(sortKeys);
 
-    for await (let json of jsons) {
+    for await (let [index, json] of jsons.entries()) {
         // if the page entry starts with a slash, it needs the IP added on first
         if (json.Page[0] == '/') {
             let fullPage = 'https://' + browser.params.ip + json.Page;
@@ -57,6 +60,9 @@ async function getTimes(jsons, maxTime) {
         let finish = await pulsePage.checkTime(json.Content, json.Locator);
         expect(finish).toBeLessThan(maxTime);
         json[today] = finish;
+        jsons[index] = sortPackageJson(json, {
+            sortOrder: sortKeys
+        });
     }
 }
 
