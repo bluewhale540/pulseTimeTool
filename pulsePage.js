@@ -72,13 +72,11 @@ let pulsePage = function() {
          * waits for the content to load and stores the time it loaded in ContentExist.
          */
         async function checkEle() {
-          try {
-            if (await content.isPresent()) {
-              contentExist = Date.now();
-              console.log('The content populated at this time: ' + contentExist);
-            } 
+          if (await content.isPresent()) {
+            contentExist = Date.now();
+            console.log('The content populated at this time: ' + contentExist);
           }
-          catch (err) {
+          else {
             console.log('The content never showed up...');
           }
         }

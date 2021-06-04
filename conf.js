@@ -22,7 +22,7 @@ exports.config = {
       args: ['--ignore-certificate-errors', "--allow-insecure-localhost"]
     }
   },
-  allScriptsTimeout: 1000,
+  allScriptsTimeout: 60000,
   params: {
     ip: 'none',
     file: 'none',
