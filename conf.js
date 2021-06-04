@@ -26,7 +26,7 @@ exports.config = {
   params: {
     ip: 'none',
     file: 'none',
-    outFile: 'same',
+    outfile: 'same',
     username: 'admin',
     password: 'admin',
   }

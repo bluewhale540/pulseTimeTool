@@ -17,8 +17,8 @@ describe('pulse tests', function() {
         // this is NOT the master timeout, just the spec expectation
         await csvIO.getTimes(processed, 30);
         // if user specified output file, write to that; otherwise, write to input file
-        if (browser.params.outFile != 'same') {
-            csvIO.writeCSV(processed, browser.params.outFile);
+        if (browser.params.outfile != 'same') {
+            csvIO.writeCSV(processed, browser.params.outfile);
         }
         else {
             csvIO.writeCSV(processed, browser.params.file);
