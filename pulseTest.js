@@ -11,18 +11,18 @@ describe('pulse tests', function() {
         browser.ignoreSynchronization = false;
     });
 
-    it('should have each page load in less than 15s', async function() {
-        let processed = await csvIO.readCSV(browser.params.inFile);
-        // if a page takes longer than 15s to load, something is probably wrong
-        await csvIO.getTimes(processed, 15); // change 15 to something else if it's more reasonable
-
+    it('should have each page load in less than 30s', async function() {
+        let processed = await csvIO.readCSV(browser.params.file);
+        // if a page takes longer than 30s to load, something is probably wrong and spec will fail
+        // this is NOT the wait timeout, just the spec expectation
+        await csvIO.getTimes(processed, 30);
         // if user specified output file, write to that; otherwise, write to input file
         if (browser.params.outFile != 'same') {
             csvIO.writeCSV(processed, browser.params.outFile);
         }
         else {
-            csvIO.writeCSV(processed, browser.params.inFile);
+            csvIO.writeCSV(processed, browser.params.file);
         }
-        console.log(processed);
+        //console.log(processed);
     }, 2147483647);
 });

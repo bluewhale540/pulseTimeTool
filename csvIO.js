@@ -44,17 +44,17 @@ async function getTimes(jsons, maxTime) {
     const today = now.toISOString();
     let sortKeys = Object.keys(jsons[0]);
     sortKeys.splice(3, 0, today);
-    console.log(sortKeys);
+    //console.log(sortKeys);
 
     for await (let [index, json] of jsons.entries()) {
         // if the page entry starts with a slash, it needs the IP added on first
         if (json.Page[0] == '/') {
             let fullPage = 'https://' + browser.params.ip + json.Page;
-            console.log('\x1b[33m%s\x1b[0m', fullPage); // just prints the page yellow
+            console.log('\x1b[33m%s\x1b[0m', '\n' + fullPage); // just prints the page yellow
             pulsePage.loadPulse(fullPage);
         }
         else {
-            console.log('\x1b[33m%s\x1b[0m', json.Page);
+            console.log('\x1b[33m%s\x1b[0m', '\n' + json.Page);
             pulsePage.loadPulse(json.Page);
         }
         let finish = await pulsePage.checkTime(json.Content, json.Locator);

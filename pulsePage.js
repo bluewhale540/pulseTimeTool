@@ -11,13 +11,13 @@ let pulsePage = function() {
      * The username and password can be passed as a command line argument.
      */
     this.login = function() {
-        let username = browser.driver.findElement(by.name('Core.Login.user_name'));
-        let password = browser.driver.findElement(by.name('Core.Login.password'));
+        let user = browser.driver.findElement(by.name('Core.Login.user_name'));
+        let pass = browser.driver.findElement(by.name('Core.Login.password'));
         let loginButton = browser.driver.findElement(by.id('form-login-button'));
-        username.sendKeys(browser.params.user);
-        password.sendKeys(browser.params.password);
+        user.sendKeys(browser.params.username);
+        pass.sendKeys(browser.params.password);
         loginButton.click();
-        console.log("logged in")
+        console.log('Logged in');
     };
 
     /**
@@ -30,8 +30,6 @@ let pulsePage = function() {
      * the page is usable.
      * @returns DOMConLoaded The amount of time taken to load DOM content.
      * @returns loadTime The amount of time taken to load all blocking javascript.
-     * 
-     * @todo turn checkEle into a try-catch
      */
     this.checkTime = async function (async, locator) {
         browser.waitForAngular();
@@ -42,7 +40,7 @@ let pulsePage = function() {
          */
         async function pageNav() {
           try {
-            const nav = browser.executeScript("return window.performance.timing");
+            const nav = browser.executeScript('return window.performance.timing');
             return nav; // Returns a Promise since it's an async function
           } 
           catch (err) {
@@ -74,12 +72,14 @@ let pulsePage = function() {
          * waits for the content to load and stores the time it loaded in ContentExist.
          */
         async function checkEle() {
-          if (await content.isPresent()) {
-            contentExist = Date.now();
-            console.log(`The content populated at this time: ${contentExist}`);
-          } 
-          else {
-            console.log("The content never showed up...");
+          try {
+            if (await content.isPresent()) {
+              contentExist = Date.now();
+              console.log('The content populated at this time: ' + contentExist);
+            } 
+          }
+          catch (err) {
+            console.log('The content never showed up...');
           }
         }
         await checkEle();
@@ -90,7 +90,7 @@ let pulsePage = function() {
         const DOMConLoaded = (pagePerf.domComplete - pagePerf.domLoading) / 1000;
         console.log(`The finish time with AJAX/fetch requests was: ${finishTime.toFixed(2)} seconds`);
         console.log(`Load time is: ${loadTime.toFixed(2)} seconds`);
-        console.log(`DOM Content Load Time is: ${DOMConLoaded.toFixed(2)} seconds\n`);
+        console.log(`DOM Content Load Time is: ${DOMConLoaded.toFixed(2)} seconds`);
         return finishTime;
     };
 };

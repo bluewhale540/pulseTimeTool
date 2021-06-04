@@ -1,5 +1,18 @@
 // conf.js
 exports.config = {
+  onPrepare: function() {
+    if (browser.params.ip == 'none' || browser.params.file == 'none') {
+      console.log('\x1b[31m%s\x1b[0m', 'No IP address and/or file specified.');
+      console.log('\x1b[36m%s\x1b[0m', `Parameters can be specified with "--params.parameter value" (no quotes):
+      --params.ip           the IP address
+      --params.file         the file to read from
+      --params.outfile      the file to write to; if not specified, will write to the input file
+      --params.username     the username to use on the login screen; default is admin
+      --params.password     the password to use on the login screen; default is admin
+      `);
+      throw 'No IP address and/or file specified.';
+    }
+  },
   framework: 'jasmine',
   seleniumAddress: 'http://localhost:4444/wd/hub',
   specs: ['pulseTest.js'],
@@ -9,12 +22,12 @@ exports.config = {
       args: ['--ignore-certificate-errors', "--allow-insecure-localhost"]
     }
   },
-  allScriptsTimeout: 30000,
+  allScriptsTimeout: 1000,
   params: {
-    inFile: 'newTest.csv',
+    ip: 'none',
+    file: 'none',
     outFile: 'same',
-    ip: '172.17.53.253',
-    user: 'admin',
+    username: 'admin',
     password: 'admin',
   }
 }
