@@ -14,7 +14,7 @@ describe('pulse tests', function() {
     it('should have each page load in less than 30s', async function() {
         let processed = await csvIO.readCSV(browser.params.file);
         // if a page takes longer than 30s to load, something is probably wrong and spec will fail
-        // this is NOT the wait timeout, just the spec expectation
+        // this is NOT the master timeout, just the spec expectation
         await csvIO.getTimes(processed, 30);
         // if user specified output file, write to that; otherwise, write to input file
         if (browser.params.outFile != 'same') {
