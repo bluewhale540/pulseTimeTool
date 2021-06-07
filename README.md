@@ -39,11 +39,11 @@ protractor conf.js --params.parameter=value
 Alternatively, the equals sign between the parameter and value can be omitted.
 
 The parameters that can be passed are:
-* params.ip         The IP address
-* params.file       The file to read from
-* params.outfile    The file to write to; if not given, will write to the input file
-* params.username   The username to use on the login screen; default is admin
-* params.password   The password to use on the login screen; default is admin
+* params.ip            The IP address
+* params.file          The file to read from
+* params.outfile       The file to write to; if not given, will write to the input file
+* params.username      The username to use on the login screen; default is admin
+* params.password      The password to use on the login screen; default is admin
 
 At minumum we will need to specify the IP address and file to read/write from, like so:
 
@@ -52,7 +52,7 @@ protractor conf.js --params.ip x.x.x.x params.file data.csv
 ```
 
 ### The CSV
-The tool uses a CSV file to read and write its data. The file sample.csv shows the required format; the first three columns must be named 'Page', 'Locator', and 'Content'. In the Page column, a URL or URL suffix can be entered. If a URL suffix is given, it will be prefixed with https://params.ip. The Locator column contains the element locator Protractor should use to find the element in question. The 3 locators supported are class, id, and css. Lastly, the Content column contains the element to wait for. Locator and Content must be found manually; inspect element is a good tool for this. For example, if an element contains: class="k-grid-content", the Locator column should be 'class' and the Content column should be 'k-grid-content'
+The tool uses a CSV file to read and write its data. The file sample.csv shows the required format; the first three columns must be named 'Page', 'Locator', and 'Content'. In the Page column, a URL or URL suffix can be entered. If a URL suffix is given, it will be prefixed with https://params.ip. The Locator column contains the element locator Protractor should use to find the element in question. The 3 locators supported are class, id, and css. Lastly, the Content column contains the element to wait for. Locator and Content must be found manually; inspect element is a good tool for this. For example, if an element contains: class="k-grid-content", the Locator column should be 'class' and the Content column should be 'k-grid-content'.
 
 The tool will write the most recent data to the fourth column, with older entires extending rightward. Each data column will have a header containing the timestamp the data was obtained.
 
