@@ -22,6 +22,13 @@ To use this tool you will need the following packages. They can be installed glo
   npm install sort-package-json
   ```
 
+Then start a Selenium Server with the following commands. Ignore the update command if it is already up to date. If the running server is different from the default (http://localhost:4444/wd/hub), change seleniumAddress to that instead in the conf.js file.
+* WebDriver
+  ```sh
+  webdriver-manager update
+  webdriver-manager start
+  ```
+
 ## Usage
 
 ### Execution
@@ -49,4 +56,4 @@ The tool uses a CSV file to read and write its data. The file sample.csv shows t
 
 The tool will write the most recent data to the fourth column, with older entires extending rightward. Each data column will have a header containing the timestamp the data was obtained.
 
-It is recommended to have separate file for each interface (Pulse, Ravens, etc.), since pages present in one platform but not others will cause the tool to hang.
+It is recommended to have separate files for each interface (Pulse, Ravens, etc.), since pages present in one platform but not others will cause the tool to hang.
