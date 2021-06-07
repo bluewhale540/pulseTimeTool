@@ -50,7 +50,7 @@ The parameters that can be passed are:
 At minumum we will need to specify the IP address and file to read/write from, like so:
 
 ```sh
-protractor conf.js --params.ip x.x.x.x params.file sample.csv
+protractor conf.js --params.ip x.x.x.x --params.file sample.csv
 ```
 
 ### The CSV
