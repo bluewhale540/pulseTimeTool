@@ -38,14 +38,14 @@ protractor conf.js --params.parameter=value
 ```
 Alternatively, the equals sign between the parameter and value can be omitted.
 
-<pre>
 The parameters that can be passed are:
+<pre>
 * params.ip            The IP address
 * params.file          The file to read from
 * params.outfile       The file to write to; if not given, will write to the input file
 * params.username      The username to use on the login screen; default is admin
 * params.password      The password to use on the login screen; default is admin
-<pre>
+</pre>
 
 At minumum we will need to specify the IP address and file to read/write from, like so:
 
