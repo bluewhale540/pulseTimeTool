@@ -32,7 +32,7 @@ let pulsePage = function () {
    * @returns loadTime The amount of time taken to load all blocking javascript.
    */
   this.checkTime = async function (content, locator) {
-    browser.waitForAngular();
+    await browser.waitForAngular();
     /**
      * Executes the script in chrome to retrieve performance stats.
      * 
@@ -72,12 +72,14 @@ let pulsePage = function () {
      * waits for the content to load and stores the time it loaded in ContentExist.
      */
     async function checkEle() {
-      if (await theElem.isPresent()) {
+      let until = protractor.ExpectedConditions;
+      let populated = await browser.wait(until.presenceOf(theElem));
+      if (populated) {
         contentExist = Date.now();
         console.log('The content populated at this time: ' + contentExist);
       }
       else {
-        console.log('The content never showed up...');
+        console.log('The content never showed up...')
       }
     }
     await checkEle();

@@ -1,6 +1,7 @@
-Page,Locator,Content,2021-06-04T21:29:04.306Z,2021-06-04T21:24:36.376Z,2021-06-04T21:23:28.487Z,2021-06-04T21:22:33.415Z,2021-06-04T21:05:36.688Z
-/obj/service_domain_elements/view,class,k-grid-content,5.111,4.985,5.098,5.381,5.158
-/config/inetprofile/add,id,inetprofile-obj-name-container,4.91,4.868,4.861,5.064,4.789
-/stats/reports/network-data-snapshot,class,n-configurator-container n-configurator-absolute,4.972,4.406,5.183,5.368,4.519
-/sla/network/index,id,content,4.821,3.709,4.254,4.488,3.585
-https://www.overleaf.com/,css,.btn-hero,1.043,null,null,null,null
+Page,Locator,Content,2021-06-10T15:43:04.057Z,2021-06-10T15:42:10.928Z,2021-06-10T15:10:12.873Z,2021-06-10T14:28:40.813Z,2021-06-10T14:28:05.112Z,2021-06-10T14:27:28.501Z,2021-06-10T14:26:16.726Z,2021-06-10T14:25:09.798Z
+/obj/service_domain_elements/view,class,k-grid-content,6.686,4.769,5.082,5.111,4.985,5.098,5.381,5.158
+/config/inetprofile/add,id,inetprofile-obj-name-container,5.348,8.455,4.361,4.91,4.868,4.861,5.064,4.789
+/stats/reports/network-data-snapshot,class,n-configurator-container n-configurator-absolute,6.085,5.611,4.871,4.972,4.406,5.183,5.368,4.519
+/sla/network/index,id,content,3.57,4.407,3.756,4.821,3.709,4.254,4.488,3.585
+https://www.overleaf.com/,css,.btn-hero,0.949,1.074,0.937,1.043,null,null,null,null
+/config/inroutegroupprofile/add,id,inroutegroupprofile-obj-name-container,5.381,6.438,5.507,null,null,null,null,null
