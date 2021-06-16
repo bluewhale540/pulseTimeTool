@@ -15,7 +15,7 @@ const sortPackageJson = require('sort-package-json');
  */
 async function readCSV(file) {
     let processed = [];
-    return new Promise(function(resolve, reject) {
+    return new Promise((resolve) => {
         fs.createReadStream(file)
         .pipe(csv())
         .on('data', (row) => {
