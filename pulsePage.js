@@ -24,14 +24,11 @@ let pulsePage = function () {
    * Calcualtes various metrics related to the time needed to load a page from the 
    * Pulse interface. Thanks to Patrick Hanley for the finish time code.
    * 
-   * @param {String} content The content to find/wait for
-   * @param {String} locator The By.locator element finder to use.
-   * @returns finishTime The amount of time taken to load the specific async javascript so 
-   * the page is usable.
+   * @returns finishTime The amount of time taken to load the page to a fully usable state.
    * @returns DOMConLoaded The amount of time taken to load DOM content.
    * @returns loadTime The amount of time taken to load all blocking javascript.
    */
-  this.checkTime = async function (content, locator) {
+  this.checkTime = async function () {
     //await browser.waitForAngular();
     /**
      * Executes the script in chrome to retrieve performance stats.
@@ -52,44 +49,27 @@ let pulsePage = function () {
 
     const pagePerf = await pageNav(); // await on the resolved Promise
     //console.log(pagePerf);
-    let theElem;
-    switch (locator) {
-      case 'class':
-        theElem = element(by.className(content));
-        break;
-      case 'id':
-        theElem = element(by.id(content));
-        break;
-      case 'css':
-        theElem = element(by.css(content));
-        break;
-      default:
-        throw new Error(`element location by ${locator} not currently supported. Try class, id, or css instead.`);
-    }
 
     /**
-     * waits for the content to load and returns the time it loaded.
+     * waits for all the loading overlays to dissappear and returns the time.
      */
     async function checkEle() {
       let until = protractor.ExpectedConditions;
-      await browser.wait(until.presenceOf(theElem));
-      
-      /*
       let overlays = element.all(by.className('overlay'));
       await overlays.each(async (element) => {
         await browser.wait(until.invisibilityOf(element), browser.params.overlaytimeout);
       });
-      */
       
       return Date.now();
     }
+
     let contentExist = await checkEle();
 
     // print the statistics for this page
     const finishTime = ((contentExist - pagePerf.navigationStart) / 1000).toFixed(2);
     const loadTime = ((pagePerf.loadEventEnd - pagePerf.navigationStart) / 1000).toFixed(2);
     const DOMConLoaded = ((pagePerf.domComplete - pagePerf.domLoading) / 1000).toFixed(2);
-    console.log(`The finish time with AJAX/fetch requests was: ${finishTime} seconds`);
+    console.log(`The time for all loading overlays to dissappear was: ${finishTime} seconds`);
     console.log(`Load time is: ${loadTime} seconds`);
     console.log(`DOM Content Load Time is: ${DOMConLoaded} seconds`);
     return finishTime;

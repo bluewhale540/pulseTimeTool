@@ -36,16 +36,19 @@ async function readCSV(file) {
  * @param {int} maxTime The maximum amount of time the element can take to load before failing the spec.
  */
 async function getTimes(jsons, maxTime) {
+    // get the date to use as the column header for the new data
     const now = new Date(Date.now());
     const today = now.toISOString();
+    // get array of header labels and splice the new date into the most recent position
     let sortKeys = Object.keys(jsons[0]);
-    sortKeys.splice(3, 0, today);
+    sortKeys.splice(1, 0, today);
     //console.log(sortKeys);
     
     for await (let [index, json] of jsons.entries()) {
-        // loading a dummy page forces the browser to load the next page from scratch
+        // loading a dummy page forces the browser to load the next page from scratch, 
+        // instead of reusing the already loaded page's base
         pulsePage.loadPulse('http://192.0.43.10/');
-        
+
         // if the page entry starts with a slash, it needs the IP added on first
         if (json.Page[0] == '/') {
             let fullPage = 'https://' + browser.params.ip + json.Page;
@@ -56,9 +59,10 @@ async function getTimes(jsons, maxTime) {
             console.log('\x1b[33m%s\x1b[0m', '\n' + json.Page);
             pulsePage.loadPulse(json.Page);
         }
-        let finish = await pulsePage.checkTime(json.Content, json.Locator);
+        let finish = await pulsePage.checkTime();
         expect(finish).toBeLessThan(maxTime);
         json[today] = finish;
+        // sort the JSON by the array created above
         jsons[index] = sortPackageJson(json, {
             sortOrder: sortKeys
         });
