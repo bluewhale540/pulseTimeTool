@@ -41,8 +41,11 @@ async function getTimes(jsons, maxTime) {
     let sortKeys = Object.keys(jsons[0]);
     sortKeys.splice(3, 0, today);
     //console.log(sortKeys);
-
+    
     for await (let [index, json] of jsons.entries()) {
+        // loading a dummy page forces the browser to load the next page from scratch
+        pulsePage.loadPulse('http://192.0.43.10/');
+        
         // if the page entry starts with a slash, it needs the IP added on first
         if (json.Page[0] == '/') {
             let fullPage = 'https://' + browser.params.ip + json.Page;

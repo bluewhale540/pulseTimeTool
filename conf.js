@@ -22,12 +22,13 @@ exports.config = {
       args: ['--ignore-certificate-errors', "--allow-insecure-localhost"]
     }
   },
-  allScriptsTimeout: 60000,
+  allScriptsTimeout: 120000,
   params: {
     ip: 'none',
     file: 'none',
     outfile: 'same',
     username: 'admin',
     password: 'admin',
+    overlaytimeout: 120000
   }
 }

@@ -32,7 +32,7 @@ let pulsePage = function () {
    * @returns loadTime The amount of time taken to load all blocking javascript.
    */
   this.checkTime = async function (content, locator) {
-    await browser.waitForAngular();
+    //await browser.waitForAngular();
     /**
      * Executes the script in chrome to retrieve performance stats.
      * 
@@ -52,7 +52,6 @@ let pulsePage = function () {
 
     const pagePerf = await pageNav(); // await on the resolved Promise
     //console.log(pagePerf);
-    let contentExist;
     let theElem;
     switch (locator) {
       case 'class':
@@ -65,32 +64,34 @@ let pulsePage = function () {
         theElem = element(by.css(content));
         break;
       default:
-        throw new Error('element location by ' + locator + ' not currently supported. Try class, id, or css instead.');
+        throw new Error(`element location by ${locator} not currently supported. Try class, id, or css instead.`);
     }
 
     /**
-     * waits for the content to load and stores the time it loaded in ContentExist.
+     * waits for the content to load and returns the time it loaded.
      */
     async function checkEle() {
       let until = protractor.ExpectedConditions;
-      let populated = await browser.wait(until.presenceOf(theElem));
-      if (populated) {
-        contentExist = Date.now();
-        console.log('The content populated at this time: ' + contentExist);
-      }
-      else {
-        console.log('The content never showed up...')
-      }
+      await browser.wait(until.presenceOf(theElem));
+      
+      /*
+      let overlays = element.all(by.className('overlay'));
+      await overlays.each(async (element) => {
+        await browser.wait(until.invisibilityOf(element), browser.params.overlaytimeout);
+      });
+      */
+      
+      return Date.now();
     }
-    await checkEle();
+    let contentExist = await checkEle();
 
     // print the statistics for this page
-    const finishTime = (contentExist - pagePerf.navigationStart) / 1000;
-    const loadTime = (pagePerf.loadEventEnd - pagePerf.navigationStart) / 1000;
-    const DOMConLoaded = (pagePerf.domComplete - pagePerf.domLoading) / 1000;
-    console.log(`The finish time with AJAX/fetch requests was: ${finishTime.toFixed(2)} seconds`);
-    console.log(`Load time is: ${loadTime.toFixed(2)} seconds`);
-    console.log(`DOM Content Load Time is: ${DOMConLoaded.toFixed(2)} seconds`);
+    const finishTime = ((contentExist - pagePerf.navigationStart) / 1000).toFixed(2);
+    const loadTime = ((pagePerf.loadEventEnd - pagePerf.navigationStart) / 1000).toFixed(2);
+    const DOMConLoaded = ((pagePerf.domComplete - pagePerf.domLoading) / 1000).toFixed(2);
+    console.log(`The finish time with AJAX/fetch requests was: ${finishTime} seconds`);
+    console.log(`Load time is: ${loadTime} seconds`);
+    console.log(`DOM Content Load Time is: ${DOMConLoaded} seconds`);
     return finishTime;
   };
 };
