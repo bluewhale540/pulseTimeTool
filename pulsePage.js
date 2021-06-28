@@ -53,12 +53,21 @@ let pulsePage = function () {
      * waits for all the loading overlays to dissappear and returns the time.
      */
     async function checkEle() {
-      let until = protractor.ExpectedConditions;
+      /*
       let overlays = element.all(by.className('overlay'));
       await overlays.each(async (element) => {
         await browser.wait(until.invisibilityOf(element), browser.params.overlaytimeout);
+        console.log('overlay gone');
       });
-      
+      */
+
+      // check by spinners, seems to be more inconsistent, though it should theoretically be better
+      await browser.wait(until.invisibilityOf(element(by.id('global-spinner'))));
+      let spinners = element.all(by.className('spinner'));
+      await browser.wait(
+        async () => (await spinners.count()) == 0
+      );
+
       return Date.now();
     }
 
