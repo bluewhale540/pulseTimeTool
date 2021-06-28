@@ -29,7 +29,6 @@ let pulsePage = function () {
    * @returns loadTime The amount of time taken to load all blocking javascript.
    */
   this.checkTime = async function () {
-    //await browser.waitForAngular();
     /**
      * Executes the script in chrome to retrieve performance stats.
      * 
