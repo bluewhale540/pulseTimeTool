@@ -53,6 +53,7 @@ let pulsePage = function () {
      * waits for all the loading overlays to dissappear and returns the time.
      */
     async function checkEle() {
+      let until = protractor.ExpectedConditions;
       /*
       let overlays = element.all(by.className('overlay'));
       await overlays.each(async (element) => {
@@ -67,7 +68,7 @@ let pulsePage = function () {
       await browser.wait(
         async () => (await spinners.count()) == 0
       );
-
+      
       return Date.now();
     }
 
