@@ -45,6 +45,8 @@ The parameters that can be passed are:
 * params.outfile          The file to write to; if not given, will write to the input file
 * params.username         The username to use on the login screen; default is admin
 * params.password         The password to use on the login screen; default is admin
+* params.initialtimeout   The maximum time to wait for the first overlay to appear;
+                          default is 300000 (5 minutes)
 * params.overlaytimeout   The maximum time to wait for a single overlay to disappear; 
                           default is 300000 (5 minutes)
 </pre>

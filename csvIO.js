@@ -59,7 +59,14 @@ async function getTimes(jsons, maxTime) {
             console.log('\x1b[33m%s\x1b[0m', '\n' + json.Page);
             pulsePage.loadPulse(json.Page);
         }
-        let finish = await pulsePage.checkTime();
+
+        let finish;
+        try {
+            finish = await pulsePage.checkTime();
+        }
+        catch (err) {
+            console.log(`Page failed to load:\n${err}`);
+        }
         expect(finish).toBeLessThan(maxTime);
         json[today] = finish;
         // sort the JSON by the array created above

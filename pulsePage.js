@@ -41,7 +41,7 @@ let pulsePage = function () {
       }
       catch (err) {
         console.error(
-          `Oh no, this thing must be hanging around Ravens:\n${err}`
+          `Error fetching the Chrome statistics:\n${err}`
         );
       }
     }
@@ -54,6 +54,9 @@ let pulsePage = function () {
      */
     async function checkEle() {
       let until = protractor.ExpectedConditions;
+      // wait for the first overlay to appear - this ensures that the page is starting to load
+      await browser.wait(until.presenceOf(element(by.id('global-spinner'))), browser.params.initialtimeout);
+      // wait for all overlays to dissapear, meaning the page has loaded
       let overlays = element.all(by.className('overlay'));
       await overlays.each(async (element) => {
         await browser.wait(until.invisibilityOf(element), browser.params.overlaytimeout);
