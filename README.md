@@ -17,10 +17,9 @@ To use this tool you will need the following packages:
 * npm
   ```sh
   npm install -g protractor
-  npm install csv
-  npm install csv-parser
-  npm install json-2-csv
-  npm install sort-package-json
+  npm install csv-parser@3.0.0
+  npm install json-2-csv@3.13.0
+  npm install sort-package-json@1.50.0
   ```
 
 Then start a Selenium Server with the following commands. Ignore the update command if it is already up to date. If the running server is different from the default (http://localhost:4444/wd/hub), change seleniumAddress to that instead in the conf.js file.
