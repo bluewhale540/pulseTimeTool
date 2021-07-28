@@ -22,11 +22,11 @@ To use this tool you will need the following packages:
   npm install sort-package-json@1.50.0
   ```
 
-Then start a Selenium Server with the following commands. Ignore the update command if it is already up to date. If the running server is different from the default (http://localhost:4444/wd/hub), change seleniumAddress to that instead in the conf.js file.
+Then execute the tool using the command in the Execution section. The tool is configured to start a Selenium server on a random port and shut it down when it finishes. To manually start the Selenium server, uncomment the seleniumAddress line in conf.js and execute the two commands below. Ignore the update command if WebDriver is already up to date. If the running server is different from the default (http://localhost:4444/wd/hub), change seleniumAddress to that instead in the conf.js file.
 * WebDriver
   ```sh
   webdriver-manager update
-  webdriver-manager --detach start
+  webdriver-manager start
   ```
 
 ## Usage
