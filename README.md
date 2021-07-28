@@ -26,7 +26,7 @@ Then start a Selenium Server with the following commands. Ignore the update comm
 * WebDriver
   ```sh
   webdriver-manager update
-  webdriver-manager start
+  webdriver-manager --detach start
   ```
 
 ## Usage
