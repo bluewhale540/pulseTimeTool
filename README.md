@@ -13,12 +13,12 @@ This guide will give instructions on setting up this tool locally. To get the to
 
 ### Prerequisites
 
-To use this tool you will need the following packages. They can be installed globally with the -g flag after install, if desired.
+To use this tool you will need the following packages:
 * npm
   ```sh
-  npm install protractor
+  npm install -g protractor
   npm install csv-parser
-  npm install json2csv
+  npm install json-2-csv
   npm install sort-package-json
   ```
 
