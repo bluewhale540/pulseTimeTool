@@ -17,6 +17,7 @@ To use this tool you will need the following packages:
 * npm
   ```sh
   npm install -g protractor
+  npm install csv
   npm install csv-parser
   npm install json-2-csv
   npm install sort-package-json
