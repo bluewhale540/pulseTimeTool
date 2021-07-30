@@ -48,7 +48,9 @@ async function getTimes(jsons, maxTime) {
         // loading a dummy page forces the browser to load the next page from scratch, 
         // instead of reusing the already loaded page's base
         pulsePage.loadPulse('http://192.0.43.10/');
-
+        
+        startTime = Date.now()
+        
         // if the page entry starts with a slash, it needs the IP added on first
         if (json.Page[0] == '/') {
             let fullPage = 'https://' + browser.params.ip + json.Page;
@@ -62,7 +64,7 @@ async function getTimes(jsons, maxTime) {
 
         let finish;
         try {
-            finish = await pulsePage.checkTime();
+            finish = await pulsePage.checkTime(startTime);
         }
         catch (err) {
             console.log(`Page failed to load:\n${err}`);

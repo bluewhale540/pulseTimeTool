@@ -28,7 +28,7 @@ let pulsePage = function () {
    * @returns DOMConLoaded The amount of time taken to load DOM content.
    * @returns loadTime The amount of time taken to load all blocking javascript.
    */
-  this.checkTime = async function () {
+  this.checkTime = async function (start) {
     /**
      * Executes the script in chrome to retrieve performance stats.
      * 
@@ -56,11 +56,21 @@ let pulsePage = function () {
       let until = protractor.ExpectedConditions;
       // wait for the first overlay to appear - this ensures that the page is starting to load
       await browser.wait(until.presenceOf(element(by.id('global-spinner'))), browser.params.initialtimeout);
-      // wait for all overlays to dissapear, meaning the page has loaded
+      
+      // wait for all overlays to dissapear
       let overlays = element.all(by.className('overlay'));
       await overlays.each(async (element) => {
         await browser.wait(until.invisibilityOf(element), browser.params.overlaytimeout);
       });
+      
+      // multiple checks because spinners might disappear and reappear
+      let spinners;
+      for (i = 0; i < 10; i++) {
+        spinners = element.all(by.className('spinner'));
+        await spinners.each(async (element) => {
+          await browser.wait(until.invisibilityOf(element), browser.params.overlaytimeout);
+        });
+      }
       
       return Date.now();
     }
@@ -68,10 +78,10 @@ let pulsePage = function () {
     let contentExist = await checkEle();
 
     // print the statistics for this page
-    const finishTime = ((contentExist - pagePerf.navigationStart) / 1000).toFixed(2);
+    const finishTime = ((contentExist - start) / 1000).toFixed(2);
     const loadTime = ((pagePerf.loadEventEnd - pagePerf.navigationStart) / 1000).toFixed(2);
     const DOMConLoaded = ((pagePerf.domComplete - pagePerf.domLoading) / 1000).toFixed(2);
-    console.log(`The time for all loading overlays to dissappear was: ${finishTime} seconds`);
+    console.log(`The time for all loading overlays/spinners to dissappear was: ${finishTime} seconds`);
     console.log(`Load time is: ${loadTime} seconds`);
     console.log(`DOM Content Load Time is: ${DOMConLoaded} seconds`);
     return finishTime;
