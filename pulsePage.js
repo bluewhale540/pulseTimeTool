@@ -50,7 +50,7 @@ let pulsePage = function () {
     //console.log(pagePerf);
 
     /**
-     * waits for all the loading overlays to dissappear and returns the time.
+     * waits for all the loading overlays and spinners to dissappear and returns the time.
      */
     async function checkEle() {
       let until = protractor.ExpectedConditions;
