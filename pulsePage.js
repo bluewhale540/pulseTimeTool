@@ -65,7 +65,7 @@ let pulsePage = function () {
       
       // multiple checks because spinners might disappear and reappear
       let spinners;
-      for (i = 0; i < 10; i++) {
+      for (let i = 0; i < 10; i++) {
         spinners = element.all(by.className('spinner'));
         await spinners.each(async (element) => {
           await browser.wait(until.invisibilityOf(element), browser.params.overlaytimeout);
