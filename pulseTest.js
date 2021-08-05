@@ -14,7 +14,7 @@ describe('pulse tests', function() {
         let processed = await csvIO.readCSV(browser.params.file);
         // if a page takes longer than 60s to load, something is probably wrong and spec will fail
         // this is NOT the master timeout, just the spec expectation
-        await csvIO.getTimes(processed, 60);
+        await csvIO.getTimes(processed, 120);
         // if user specified output file, write to that; otherwise, write to input file
         if (browser.params.outfile != 'same') {
             csvIO.writeCSV(processed, browser.params.outfile);

@@ -19,7 +19,7 @@ exports.config = {
   capabilities: { 
     browserName: 'chrome', 
     chromeOptions: {
-      args: ['--headless', '--ignore-certificate-errors', '--allow-insecure-localhost']
+      args: ['--ignore-certificate-errors', '--allow-insecure-localhost']
     }
   },
   allScriptsTimeout: 600000,
