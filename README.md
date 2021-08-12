@@ -69,7 +69,7 @@ The tool will write the most recent data to the second column, with older entire
 It is recommended to have separate files for each interface (Pulse, Ravens, etc.), since pages present in one platform but not others will cause the tool to hang.
 
 ## Jenkins Build
-The tool is also set up as a Jenkins job. To run the tool on the remote automation server, go to the Pulse_Page_Load_Timing_Tool job in Jenkins and click "Build with Parameters." 
+The tool is also set up as a Jenkins job for ease of use across teams and platforms. To run the tool on the remote automation server, go to the Pulse_Page_Load_Timing_Tool job in Jenkins and click "Build with Parameters." 
 
 ![jenkins-build.png](https://i.postimg.cc/x1q5XRCh/jenkins-build.png)
 
@@ -89,4 +89,4 @@ Once the job has completed, the output csv will be saved as a build artifact ava
 ![time-tool.png](https://i.postimg.cc/cJrRJ4DS/time-tool.png)
 ![overlay.png](https://i.postimg.cc/sxBq9rDd/overlay.png)
 ![loading.png](https://i.postimg.cc/L8zdb2km/loading.png)
-![loaded.png](https://i.postimg.cc/HsbHfwdG/loaded.png)
+![loaded.png](https://i.postimg.cc/PrVcVN8G/loaded.png)
